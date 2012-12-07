@@ -1,0 +1,10 @@
+; $Id: $
+
+name = Rotation/Slide Show/A spot
+description = Allows you to easily add a jquery css3 rotation, slide show, or A spot to your durpal website that is slick and easy to edit.
+package = Rotation
+core = 7.x
+configure = admin/config/content/rotation
+files[] = rotation_main.module
+files[] = rotation_main.admin.inc
+

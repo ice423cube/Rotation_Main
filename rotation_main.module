@@ -1,0 +1,967 @@
+<?php
+// $Id$
+
+/**
+ * @file
+ * Stores and displays a rotation and admin content
+ *
+ */
+ 
+ 
+ /**
+ * Impelements hook_help().
+ */
+function rotation_main_help($path, $arg) {
+  $output = '';
+  $imgpath = '';
+  
+  $modulepath = drupal_get_path('module', 'rotation_main');
+  $imgpath = $GLOBALS['base_url'] . '/' . $modulepath . '/images';
+  $withoutthumb = $imgpath . '/Without_Thumbnails.png';
+  $withoutthumbsm = $imgpath . '/Without_Thumbnails_sm.png';
+  $thumbnails = $imgpath . '/Standard_with_Thumbnails.png';
+  $thumbnailssm = $imgpath . '/Standard_with_Thumbnails_sm.png';
+  $numberspopup = $imgpath . '/Numbers_with_Pop-up_Thumbnails.png';
+  $numberspopupsm = $imgpath . '/Numbers_with_Pop-up_Thumbnails_sm.png';
+  
+  switch ($path) {
+  case 'admin/help#rotation_main':
+    $output = '<a name="menu" id="menu"></a>
+
+<ul>
+  <li>
+    <h3><strong><a href="#intro">Introduction</a></strong></h3>
+  </li>
+  <li>
+    <h3><strong><a href="#start">Getting Started with your first Rotation</a> (<a href="http://www.screenr.com/Est8" target="_blank">Watch Video</a>)</strong></h3>
+  </li>
+  <li>
+    <h3><strong><a href="#adding">Adding an Additional Rotations</a> (<a href="http://www.screenr.com/T8t8" target="_blank">Watch Video</a>)</strong></h3>
+  </li>
+  <li>
+    <h3><strong><a href="#config">Configuring the Rotation Tips and Tricks</a></strong></h3>
+  </li>
+  <li>
+    <h3><strong><a href="#stylesandsettings">Different Style Rotation and Settings</a> (<a href="http://www.screenr.com/K8t8" target="_blank">Watch Video</a>)</strong></h3>
+  </li>
+  <li>
+    <h3><strong><a href="#node">Can I have a single Rotation Item (Node) show up in more than one place</a></strong></h3>
+  </li>
+  <li>
+    <h3><strong><a href="#known">Known Issues</a></strong></h3>
+  </li>
+  <li>
+    <h3><a href="#admin">Rotation/Slide Show/A spot administration pages</a></h3>
+  </li>
+  </ul>
+<p>&nbsp;</p>
+<h2><strong><a name="intro" id="intro"></a>Introduction:</strong></h2>
+<p>Need a easy to use and customise Rotation/Slide Show/A spot.  This rotation module is just what you are looking for.</p>
+	<p>The administration menu <a href="#start">setting page</a> allows you to modify your Rotation/Slide Show with its easy to edit form that controls the global settings across your website of the Rotation/Slide Shows so you have consistency.  You can completely customize the entire slide show and make it your own.  You can <a href="#config">view the different types of slides shows you can easily create here and view all settings replicate your slide show to the example</a>.</p>
+    <p>Check out the module creators website <a href="http://www.JoeMRoberts.com/Rotation" target="_blank">www.JoeMRoberts.com/Rotation</a> for more information about the Rotation/Slide Show/A spot.    </p>
+<p><strong>Please Note:</strong> You can only use one Rotation Block on a page at a time.  This module is cached so if you need to change it please clear the cache.</p>
+
+
+
+<p><a href="#menu">Back To Top</a></p>
+<p>&nbsp;</p>
+<h2><strong><a name="start" id="start"></a>Getting Started with your first Rotation:</strong></h2>
+<ul>
+  <li><a href="http://www.screenr.com/Est8" target="_blank"><strong>Watch Video Instructions on how to get started</strong></a></li>
+  <li>Install Module</li>
+  <li>Go to the <strong><a href="/admin/config/content/rotation" target="_blank">Rotation Module Configuration page</a> (Configuration &gt; Content Authoring &gt; <a href="/admin/config/content/rotation" target="_blank">Rotation Module</a>)</strong>
+    <ul>
+      <li>Configure it they way you want it to show up across all Rotations.</li>
+      <li>Be sure to read all the notes under each input to help you figure out how to best use the rotation.</li>
+      <li>Hit Save</li>
+    </ul>
+  </li>
+  <li>Edit Rotation Item Nodes to be what content you want and clear the cache so they show up.</li>
+  <li>Go to the <strong><a href="/admin/structure/block" target="_blank">Blocks Configuration Page</a> (Block Structure &gt; <a href="/admin/structure/block" target="_blank">Blocks</a>)</strong> and drag the block &quot;Rotation Location # (Rotation Main)&quot; (in this case since is our first one it is Rotation Location 1 (Rotation Main)) to the Content Area above the &quot;Main Page Content&quot; so the rotation appears on top of the content.</li>
+  <li>Hit Save Blocks</li>
+  <li>Configure the block &quot;Rotation Location # (Rotation Main)&quot; in this case since is our first one it is Rotation Location 1 (Rotation Main)
+    <ul>
+      <li>Select the Location you want from the drop down. Since this is the first Rotation we will use the default location &quot;Home Page&quot; you can use this for any page it does not have to be the Home Page it is just a place holder name and you can even change the name in the taxonomy section of the website.
+        <ul>
+          <li>Do not see what you are looking for or want to change the default &quot;Home Page&quot; to a different name. Add a new or edit the vocabulary term <strong><a href="/admin/structure/taxonomy/rotation_tax" target="_blank">Rotation Location</a></strong> by going to <strong>Structure &gt;  Taxonomy &gt; <a href="/admin/structure/taxonomy/rotation_tax" target="_blank">Rotation Locations</a></strong></li>
+        </ul>
+      </li>
+      <li>Change the &quot;Visibility Settings&quot; and make sure that &quot;Pages&quot; is set to &quot;Only The Listed Pages&quot; and then put in the page you want this to show up on. Example use <strong>&lt;front&gt;</strong> will only display this block on the front page. If you do not do this it will automatically show up on every page.  In this example we will use <strong>&lt;front&gt;</strong> for the home page.</li>
+      <li>Hit Save</li>
+      <li>Select the block &quot;Rotation Location 1 (Rotation Main)&quot; again and configure it</li>
+      <li>Now re-order the Rotations to the order that you want by sliding them up and down. The weights will automatically update for you.</li>
+      <li>Hit Save</li>
+    </ul>
+  </li>
+  <li>Your rotations should be displaying on the page you specified in the &quot;Visibility Settings&quot; inside the block. In this case it was <strong>&lt;front&gt;</strong>.</li>
+  <li>Do not forget to <a href="/admin/people/permissions#module-rotation_main" target="_blank"><strong>edit the permissions of the Rotation Block</strong></a> so that anonymous users can see the rotation.</li>
+  <li><strong>Please Note:</strong> You can only use one Rotation Block on a page at a time.</li>
+</ul>
+<p><a href="#menu">Back To Top</a></p>
+<p>&nbsp;</p>
+<h2> <strong><a name="adding" id="adding"></a>Adding an Additional Rotations:</strong></h2>
+<ul>
+  <li><a href="http://www.screenr.com/T8t8" target="_blank"><strong>Watch Video Adding an Additional Rotations</strong></a> </li>
+  <li>Go to the <a href="/admin/config/content/rotation" target="_blank"><strong>Rotation Module Configuration page</strong></a><strong> (Configuration &gt; Content Authoring &gt; Rotation Module)</strong>
+    <ul>
+      <li> Update the &quot;Total Number of Rotations&quot; to the desired number of rotations in the case we want to add one more so we will change the number to &quot;2&quot;</li>
+      <li>Hit Save</li>
+    </ul>
+  </li>
+  <li>Add a new vocabulary term to <strong><a href="/admin/structure/taxonomy/rotation_tax" target="_blank">Rotation Locations</a></strong> by going to <strong>Structure &gt;  Taxonomy &gt; <a href="/admin/structure/taxonomy/rotation_tax" target="_blank">Rotation Locations</a></strong>
+    <ul>
+      <li>Add Term</li>
+      <li>Name it what you want (Usually a good practice to name it the same as the title) we will call it &quot;Training&quot;</li>
+      <li>Description is optional</li>
+      <li>Hit save</li>
+    </ul>
+  </li>
+  <li>Add new content that is of the content type of <strong><a href="/node/add/rotation-main" target="_blank">Rotation Item</a></strong>
+    <ul>
+      <li>Add in the required fields and hit save.</li>
+      <li>Under Location Select the newly created Taxonomy Term &quot;Training&quot;</li>
+      <li>Continue adding until all nodes you want for the new rotation have been created</li>
+      <li>Hit Save</li>
+    </ul>
+  </li>
+  <li>Go to the <strong><a href="/admin/structure/block" target="_blank">Blocks Page</a></strong> by going to <strong>Structure &gt; <a href="/admin/structure/block" target="_blank">Blocks</a></strong> and drag the block &quot;Rotation Location # (Rotation Main)&quot; (in this case it would be Rotation Location 2 (Rotation Main))  to the Content Area above the &quot;Main Page Content&quot; so the rotation appears on top of the content.</li>
+  <li>Hit Save Blocks</li>
+  <li>Configure the block &quot;Rotation Location # (Rotation Main)&quot; in this case it would be Rotation Location 2 (Rotation Main)
+    <ul>
+      <li>Select the Location you want from the drop down. We will be selecting &quot;Training&quot; since we just created that taxonomy term.
+        <ul>
+          <li>Do not see what you are looking for or want to change the default &quot;Home Page&quot; to a different name. Add a new or edit the vocabulary term <strong><a href="/admin/structure/taxonomy/rotation_tax" target="_blank">Rotation Location</a></strong> by going to <strong>Structure &gt;  Taxonomy &gt; <a href="/admin/structure/taxonomy/rotation_tax" target="_blank">Rotation Locations</a></strong></li>
+        </ul>
+      </li>
+      <li>Change the &quot;Visibility settings&quot; and make sure that &quot;Pages&quot; is set to &quot;Only The Listed Pages&quot; and then put in the page you want this to show up on. In this case we want it to only display on the Training page which is &quot;training&quot;.</li>
+      <li>Hit Save</li>
+      <li>Select the block &quot;Rotation Location 2 (Rotation Main)&quot; again and configure it</li>
+      <li>Now re-order the Rotations to the order that you want.  The weights will automatically update for you.</li>
+      <li>Hit Save</li>
+    </ul>
+  </li>
+  <li>Your rotations should be displaying on the page you specified in the &quot;Visibility Settings&quot; inside the block. In this case it was &quot;/training&quot;.</li>
+  <li><strong>Please Note:</strong> You can only use one Rotation Block on a page at a time.<br>
+  </li>
+</ul>
+<p><a href="#menu">Back To Top</a></p>
+<p>&nbsp;</p>
+<h2><strong><a name="config" id="config"></a></strong>Configuring the Rotation Tips and Tricks:</h2>
+<ul>
+  <li>Total Number of Rotations: Enter the Number of Rotation you would like to display on this website. This will create a block for each of the sites so you can place it on the pages that you want to.</li>
+  <li>Entire Rotation Information
+    <ul>
+      <li>Large Image Width: Choose a Width for your Large Image. Please Note: Make sure the images you are posting are set to this width. If they are larger they will be cropped.</li>
+      <li>Large Image Height: Choose a Height for your Large Image. Please Note: Make sure the images your are posting are set to this height. If they are larger they will be cropped.</li>
+      <li>Rotation Transition Time: In milliseconds 1,000 = 1 second.</li>
+      <li>Entire Background Color: Drag the color chart below to pick a color. The outside ring selects the color and the inside square changes the lightness or darkness of that color.  It is a good idea to match your background color.</li>
+      <li>Entire Rotation Rounded Corners: Rounds all the corners to help it not look so boxy-looking.</li>
+    </ul>
+  </li>
+  <li>Overlay Information
+    <ul>
+      <li>Selected Overlay Positions: Choose a position for the overlay area to display.  You can choose from Bottom, Top, Left or Right.</li>
+      <li>Overlay Width: Please Note: Remember if you choose top or bottom this field will be ignored. Choose a Width for the overlay area of 200px wide use &quot;200&quot;.  Leave off the &quot;px&quot;.</li>
+      <li>Overlay Height: Please Note: Remember if you choose right or left this field will be ignored. Choose a Height for the overlay area of 100px tall use &quot;100&quot;.  Leave off the &quot;px&quot;.</li>
+      <li>Overlay Text Color: Please Note: The font-family and font-size will be inherited from your style sheet. Feel free to edit the class by changing (Rotation Links = .rotationLinks class) and/or (Rotation Header = .rotationHeader class).</li>
+      <li>Overlay Background Color: Drag the color chart below to pick a color. The outside ring selects the color and the inside square changes the lightness or darkness of that color.</li>
+      <li>Overlay Background Opacity: Choose a value between 0 (Completely Transparent) and 1 (Solid Color). Example: 0.80 is 80% transparent. If you do not want an overlay at all just set this value to 0.</li>
+    </ul>
+  </li>
+  <li>Filmstrip Information
+    <ul>
+      <li>Filmstrip Position: You can change where the filmstrip shows up.  Select bottom, top or No Film Strip. No Film Strip will remove the filmstrip completely.</li>
+      <li>Filmstrip Style: There are two styles you can setup for your filmstrip. Thumbnails = More traditional style with a thumbnail in the filmstrip. Numbers with Pop-up Thumbnails = Adds smaller numbers into the filmstrip area and allows you to use the thumbnails as pop-ups to preview what is available for that number. It also allows you to use the captions as text to display what is available underneath the thumbnail.</li>
+      <li>Edit Thumbnail Information
+        <ul>
+          <li>Thumbnail Width: Choose a Width for your thumbnail images. If Filmstrip Style is set to &quot;Numbers with Pop-up Thumbnails&quot; then this value also determines the width of the pop-up. Please Note: Make sure the images you are posting are set to this width. If they are larger they will be cropped.</li>
+          <li>Thumbnail Height: Choose a Height for your thumbnail images. If Filmstrip Style is set to &quot;Numbers with Pop-up Thumbnails&quot; then this value is ignored. Please Note: Make sure the images you are posting are set to this height. If they are larger they will be cropped.</li>
+          <li>Numbers with Pop-up Thumbnails Background Color Only: If Filmstrip Style is set to &quot;Thumbnails&quot; then this value is ignored. This controls the color of the background of the numbers and the pop-up. Drag the color chart below to pick a color. The outside ring selects the color and the inside square changes the lightness or darkness of that color.</li>
+        </ul>
+      </li>
+      <li>Edit Caption Information
+        <ul>
+          <li>Show Captions: Selecting &quot;yes&quot; will allow you to see captions under each thumbnail in the filmstrip.</li>
+          <li>Captions Height: This is the height of the caption area. 20 = 20px in height. If you have a longer caption you might want to make this a larger number. You can adjust the line-height be changing the &quot;.caption&quot; class.</li>
+          <li>Caption Text Color: Drag the color chart below to pick a color. The outside ring selects the color and the inside square changes the lightness or darkness of that color.</li>
+        </ul>
+      </li>
+      <li>Filmstrip Selected Image Border Color: Drag the color chart below to pick a color. The outside ring selects the color and the inside square changes the lightness or darkness of that color.  
+      </li>
+    </ul>
+  </li>
+  <ul>
+    <li>Filmstrip Arrows and Pointer Color: Drag the color chart below to pick a color. The outside ring selects the color and the inside square changes the lightness or darkness of that color.</li>
+  </ul>
+</ul>
+<p><a href="#menu">Back To Top</a></p>
+<p>&nbsp;</p>
+<h2><strong><a name="stylesandsettings" id="stylesandsettings"></a></strong>Different Style Rotation and Settings:</h2>
+<ul>
+  <li><a href="http://www.screenr.com/K8t8" target="_blank"><strong>Watch Video Different Style Rotation and Settings</strong></a></li>
+  <li><strong><a href="' . $withoutthumb . '" target="_blank"><img src="' . $withoutthumbsm . '" alt="without thumbnails" width="250" height="108" align="right" />Without Thumbnails (View Larger image)</a>: </strong>This setting has no thumbnails and it has arrows that overly the main large image which allow you to advance your rotation.
+  </li>
+  <ul>
+    <li><strong>Settings: </strong>
+      <ul>
+        <li>Set the &quot;Filmstrip Position&quot; to &quot;No Film Strip.&quot;</li>
+        <li>Optional: Without Overlay Background Color set &quot;Overlay Background Opacity&quot; to 0.</li>
+        <li>Optional: Add Rounded corners for a different look select &quot;yes&quot; for &quot;Entire Rotation Rounded Corners&quot;</li>
+      </ul>
+      
+      <p>&nbsp;</p>
+      
+    </li>
+  </ul>
+  <li><strong><a href="' . $thumbnails . '" target="_blank"><img src="' . $thumbnailssm . '" alt="standard with thumbnails" width="250" height="152" align="right" />Standard with Thumbnails (View Larger image)</a>:</strong> Basic Large Image with Thumbnails below it.</li>
+  <ul>
+    <li><strong>Settings: </strong>
+  <ul>
+    <li>Set the &quot;Filmstrip Position&quot; to &quot;top&quot; or &quot;bottom&quot; depending on where you want the thumbnails to show up</li>
+    <li>Set the &quot;Filmstrip Style&quot; to &quot;Thumbnails&quot;</li>
+    <li>Optional: Without Overlay Background Color set &quot;Overlay Background Opacity&quot; to 0.</li>
+    <li>Optional: Add Rounded corners for a different look select &quot;yes&quot; for &quot;Entire Rotation Rounded Corners&quot;</li>
+    </ul>
+      
+      <p>&nbsp;</p>
+      
+    </li>
+  </ul>
+  <li><strong><a href="' . $numberspopup . '" target="_blank"><img src="' . $numberspopupsm . '" alt="Numbers with Pop-up" width="250" height="119" align="right" />Numbers with Pop-up Thumbnails (View Larger image)</a>:</strong> Large image with smaller numbers and a pop-up preview of the thumbnail and captions if used.
+    <ul>
+      <li><strong> Settings: </strong>
+        <ul>
+          <li>Set the &quot;Filmstrip Position&quot; to &quot;top&quot; or &quot;bottom&quot; depending where you want the numbers and pop-up thumbnails to show up.</li>
+          <li>Set the &quot;Filmstrip Style&quot; to &quot;Thumbnails&quot;</li>
+          <li>Optional: Without Overlay Background Color set &quot;Overlay Background Opacity&quot; to 0.</li>
+          <li>Optional: Add Rounded corners for a different look select &quot;yes&quot; for &quot;Entire Rotation Rounded Corners&quot;</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<p><a href="#menu">Back To Top</a></p>
+<p>&nbsp;</p>
+<h2><strong><a name="node" id="node"></a></strong>Can I have a single Rotation Item show up in more than one place:</h2>
+<p>  Yes, it is easy.  All you have to do is open the node that you want to share across multiple Locations and scroll down to the Locations section and check any additional locations you want it to show up in.  There is a known issue that the is only one weight.  So you might have to work the weights between the multiple to get it to show up where you want in each rotation.  But aside from that it is simple.</p>
+<p><a href="#menu">Back To Top</a></p>
+<p>&nbsp;</p>
+<h2><a name="known"></a>Known Issues:</h2>
+<ul>
+  <li>  Numbers with Pop-up Thumbnails can not have to many listing in it or it breaks and hides the arrows.</li>
+  <li>One Rotation Item (Node) in multiple rotations blocks on a site needs to be played with because there is only one weight field per item.  So to get them to show up in the correct place in both rotations you need to play with the weight number. </li>
+  <li><strong>Please Note:</strong> You can only use one Rotation Block on a page at a time. If you add multiple to one page it will break. You can have multiple rotations on your website just not on the same page.</li>
+  <li>Multiple JS scripts with the same name does cause bugs.  You might need to remove them from your theme layer so they do not conflict with this module.</li>
+  <li>This module uses cache so if your content is not showing up please clear your cache.</li>
+  <li>If you select yes for Captions you MUST have content in the Caption field or your entire rotation will not display.  This field becomes a required field.</li>
+</ul>
+<p><a href="#menu">Back To Top</a></p>
+<p>&nbsp;</p>
+<p><a name="admin" id="admin"></a></p>';
+    break;
+  }
+    
+	return $output;
+
+}
+
+
+
+/**
+ * Implements hook_permission().
+ */
+function rotation_main_permission() {
+  return array(
+    'administer rotation' => array(
+      'title' => t('Administer Rotation module'),
+      'description' => t('Perform administration tasks for Rotation module.'),
+    ),
+    'access Roation blocks' => array(
+      'title' => t('Access Rotation blocks'),
+      'description' => t('View blocks generated by the Rotation module.'),
+    ),
+  );
+}
+
+
+/**
+ * Implements hook_menu().
+ */
+function rotation_main_menu() {
+  // Module settings.
+  $items['admin/config/content/rotation'] = array(
+    'title' => 'Rotation Module',
+    'description' => 'Rotation configuration',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('rotation_main_admin_settings'),
+    'access arguments' => array('administer rotation'),
+    'file' => 'rotation_main.admin.inc',
+    'file path' => drupal_get_path('module', 'rotation_main'),
+  );
+  return $items;
+}
+
+
+
+
+
+function rotation_main_page_build() {
+  //Adding CSS
+  drupal_add_css(drupal_get_path('module', 'rotation_main') . '/css/rotation.css', array('type' => 'file', 'every_page' => TRUE, 'weight' => 100));
+
+
+  
+  //adds JS libraries to pages
+  function rotation_main_library() {
+    $libraries['easing'] = array(
+        'title' => 'jQuery Easing', 
+        'website' => 'http://archive.plugins.jquery.com/project/Easing', 
+        'version' => '1.3', 
+        'js' => array(
+          drupal_get_path('module', 'rotation_main') . '/js/jquery.easing.1.3.js' => array(),
+        )
+    );
+    $libraries['timers'] = array(
+        'title' => 'jQuery timers', 
+        'website' => 'http://archive.plugins.jquery.com/project/timers', 
+        'version' => '1.1.2', 
+        'js' => array(
+          drupal_get_path('module', 'rotation_main') . '/js/jquery.timers-1.1.2.js' => array(),
+        )
+    );
+    $libraries['hover'] = array(
+        'title' => 'jQuery hover Intent', 
+        'website' => 'http://cherne.net/brian/resources/jquery.hoverIntent.html', 
+        'version' => '1.5.1', 
+        'js' => array(
+          drupal_get_path('module', 'rotation_main') . '/js/jquery.hoverIntent.js' => array(),
+        )
+    );
+    $libraries['galleryview'] = array(
+        'title' => 'jQuery galleryview', 
+        'website' => 'http://old.appleton.me/2009/08/gallery-view/', 
+        'version' => '1.1', 
+        'js' => array(
+          drupal_get_path('module', 'rotation_main') . '/js/jquery.galleryview-1.1.js' => array(),
+        )
+    );
+    $libraries['rounded'] = array(
+        'title' => 'jQuery corner plugin', 
+        'website' => 'http://www.malsup.com/jquery/corner/', 
+        'version' => '2.12', 
+        'js' => array(
+          drupal_get_path('module', 'rotation_main') . '/js/jquery.corner.js' => array(),
+        )
+    );
+  return $libraries;
+}
+
+
+    
+    
+          
+    $settings['rotation_main_width'] = variable_get('rotation_main_width', '700');
+    $settings['rotation_main_height'] = variable_get('rotation_main_height', '300');
+    $settings['rotation_main_transition_interval'] = variable_get('rotation_main_transition_interval', '12000');
+    $settings['rotation_main_background_color'] = variable_get('rotation_main_background_color', '#000000');
+    $settings['rotation_main_overlay_width'] = variable_get('rotation_main_overlay_width', '200');
+    $settings['rotation_main_overlay_height'] = variable_get('rotation_main_overlay_height', '100');
+    $settings['rotation_main_overlay_position'] = variable_get('rotation_main_overlay_position', 'bottom');
+    $settings['rotation_main_overlay_text_color'] = variable_get('rotation_main_overlay_text_color', '#ffffff');
+    $settings['rotation_main_overlay_color'] = variable_get('rotation_main_overlay_color', '#425F78');
+    $settings['rotation_main_overlay_opacity'] = variable_get('rotation_main_overlay_opacity', '0.80');
+    $settings['rotation_main_frame_width'] = variable_get('rotation_main_frame_width', '100');
+    $settings['rotation_main_frame_height'] = variable_get('rotation_main_frame_height', '100');
+    $settings['rotation_main_frame_color'] = variable_get('rotation_main_frame_color', '#425F78');
+    $settings['rotation_main_filmstrip_border_color'] = variable_get('rotation_main_filmstrip_border_color', '#ffffff');
+    $settings['rotation_main_filmstrip_arrow_color'] = variable_get('rotation_main_filmstrip_arrow_color', '#ffffff');
+    $settings['rotation_main_filmstrip_position'] = variable_get('rotation_main_filmstrip_position', 'bottom');
+    $settings['rotation_main_filmstrip_style'] = variable_get('rotation_main_filmstrip_style', 'thumbnails');
+    $settings['rotation_main_show_captions'] = variable_get('rotation_main_show_captions', '0');
+    $settings['rotation_main_caption_text_color'] = variable_get('rotation_main_caption_text_color', '#ffffff');
+    $settings['rotation_main_caption_height'] = variable_get('rotation_main_caption_height', 20);
+    $settings['rotation_main_rounded_corners'] = variable_get('rotation_main_rounded_corners', 'no');
+
+
+  //Calls JS libraries to be added to pages
+  drupal_add_library('rotation_main', 'easing');
+  drupal_add_library('rotation_main', 'timers');
+  drupal_add_library('rotation_main', 'hover');
+  drupal_add_library('rotation_main', 'galleryview');
+
+  //Only add JS if rounded corners is turned on
+  if ($settings['rotation_main_rounded_corners'] == 'yes') {
+   drupal_add_library('rotation_main', 'rounded');
+  }
+  
+  
+  drupal_add_js(array('rotationMain' => $settings), 'setting');
+  
+  
+  drupal_add_js(drupal_get_path('module', 'rotation_main') . '/js/rotation_main.js', array('type' => 'file', 'scope' => 'footer', 'weight' => 100));
+  
+
+  
+
+  
+  }
+
+  
+  
+  
+  
+  /**
+ * Implements hook_block_info().
+ */
+function rotation_main_block_info() {
+  $blocks = array();
+  
+  
+  
+  for ($i = 1; $i <= variable_get('rotation_main_number', '1'); $i++) {
+	
+	$defult_tax_name_block = rotation_main_get_default_tax_id();
+	
+	$new_block_tax_name = variable_get('rotation_main_taxname_' . $i, $defult_tax_name_block);
+	
+	$query = 'SELECT name FROM {taxonomy_term_data} WHERE tid = :tid_id';
+	$get_tax_name = db_query($query, array(':tid_id' => $new_block_tax_name))->fetchField();
+	
+    $blocks[$i]['info'] = variable_get('rotation_main_name_' . $i, 'Rotation Location ' . $i) . ' (' . $get_tax_name . ')';
+    // We have too many things changing per user, per page to cache.
+    $blocks[$i]['cache'] = DRUPAL_NO_CACHE;
+  }
+  return $blocks;
+}
+
+
+
+/**
+ * Implements hook_block_configure().
+ */
+function rotation_main_block_configure($delta) {
+
+    $form['#theme'] = 'rotation_main_block_form';
+
+    $defult_tax_name_id = rotation_main_get_default_tax_id();
+
+    
+    $rt_draggable_taxid = variable_get('rotation_main_taxname_' . $delta, $defult_tax_name_id);
+
+
+   $form['rotation_main_taxname_' . $delta] = array(
+        '#type' => 'select',
+        '#title' => t('Select Location'),
+        '#description' => t('Select the taxonomy of Rotation Location Rotation Items you want to show up in the is block.  Hit Save to load the form again and then you can re-order the rotations.  If you want to add more Locations you can do it by adding additional taxonomy terms to the <a href="/admin/structure/taxonomy/rotation_tax">"Rotation Location" vocabulary</a>'),
+        '#options' => rotation_main_get_tax_term_options('rotation_tax'),
+        '#default_value' => variable_get('rotation_main_taxname_' . $delta, $defult_tax_name_id),
+        '#required' => TRUE,
+      );  
+
+
+
+    $form['rotation_main_items']['#tree'] = TRUE;
+    
+    
+    //if (!isset($form['rotation_main_taxname_' . $delta]) && $form['rotation_main_taxname_' . $delta] != 0 ) {
+    if ($form['rotation_main_taxname_' . $delta] != 0 ) {
+      
+    
+    
+    //Sets variable with the current block taxonomy type from the drop down.
+    $tax_tid = $rt_draggable_taxid;
+    
+    //Join that brings all tables together.
+    $query = db_select('node', 'n');
+    $query->join('field_data_rotation_main_weight', 'b', 'n.nid = b.entity_id');
+    $query->join("field_data_rotation_main_category", "t", "n.nid = t.entity_id AND b.entity_id = t.entity_id");
+    $query
+    ->fields('n', array('nid', 'title'))
+    ->fields('b', array('rotation_main_weight_value'))
+    ->fields('t', array('rotation_main_category_tid'))
+    ->condition('n.type', 'rotation_main')
+    ->condition('n.status', '1')
+    ->condition('t.rotation_main_category_tid', $tax_tid)
+    ->orderBy('b.rotation_main_weight_value', 'ASC')
+    ->addTag('node_access');
+    
+    $result = $query->execute();
+	
+	//Displays Query on Page
+	print (string)$query;
+    
+    foreach ($result as $record) {
+   
+        
+             // Create a form entry for this item.
+          //
+          // Each entry will be an array using the the unique id for that item as
+          // the array key, and an array of table row data as the value.
+          //$nid = $term;
+          //$node = node_load($nid);
+
+          
+          $nid = $record->nid;
+          $rt_title = $record->title;
+          $rt_weight = $record->rotation_main_weight_value;
+          
+            // Create a form entry for this item.
+            //
+            // Each entry will be an array using the the unique id for that item as
+            // the array key, and an array of table row data as the value.
+            $form['rotation_main_items'][$nid] = array(
+
+              // We'll use a form element of type '#markup' to display the item name.
+              'name' => array(
+                '#markup' => t($rt_title),
+              ),
+
+              // We'll use a form element of type '#textfield' to display the item
+              // description, which will allow the value to be changed via the form.
+              // We limit the input to 255 characters, which is the limit we set on
+              // the database field.
+              
+              
+
+              // The 'weight' field will be manipulated as we move the items around in
+              // the table using the tabledrag activity.  We use the 'weight' element
+              // defined in Drupal's Form API.
+              'weight' => array(
+                '#type' => 'weight',
+                '#title' => t('Weight'),
+                '#default_value' => $rt_weight,
+                '#delta' => 100,
+                '#title-display' => 'invisible',
+              ),
+            );
+          
+         
+        }
+    }
+    else {
+      $form['rotation_dragable_placeholder'] = array(
+      '#type' => 'markup',
+      '#markup' => t('<p><span style="font-weight:bold; font-size:16px;">Select Select Taxonomy Location From Above:</span><br />Once you select a rotation and save this page it will re-load and this spot will be replaced with a dragable and sortable listing of all the rotations.</p>')
+      );
+  }
+
+
+  $form['rotation_description'] = array(
+    '#type' => 'markup',
+    '#markup' => t('<p><span style="font-weight:bold; font-size:16px; color:#FF0000;">IMPORTANT PLEASE READ:</span><br />Please scroll down to "Visibility settings" and make sure that "Pages" is set to "Only The Listed Pages" and then put in the page you want this to show up on.  Example use <strong>&lt;front&gt;</strong> will only display this block on the front page.  <strong>If you do not do this it will automatically show up on every page.</strong></p>')
+    );
+  
+ 
+  
+  return $form;
+}
+
+/**
+ * Implements hook_block_save().
+ */
+function rotation_main_block_save($delta, $edit) {
+  variable_set('rotation_main_taxname_' . $delta, $edit['rotation_main_taxname_' . $delta]);
+  
+  //drupal_set_message(var_dump($edit));
+  //var_dump($edit);
+  // Because the form elements were keyed with the item ids from the database,
+  // we can simply iterate through the submitted values.
+  // Updates for dragable weights in each block
+  
+  
+  if (!isset($edit['values']['rotation_main_items'])){
+    foreach ($edit['rotation_main_items'] as $id => $item) {
+	
+	  
+	
+        db_query(
+          "UPDATE {field_data_rotation_main_weight} SET rotation_main_weight_value = :weight WHERE entity_id = :id",
+          array(':weight' => $item['weight'], ':id' => $id)
+        );
+		
+	  
+    }
+  }
+  
+}
+
+
+/**
+ * Implements hook_block_view().
+ */
+function rotation_main_block_view($delta) {
+ 
+
+    $rt_gettaxid = rotation_main_get_nids_from_tax_for_block($delta, $tax_name = NULL);
+    
+    $build_rotation = rotation_main_buildHTMLroation($rt_gettaxid, $delta);
+  
+    $block['content'] = $build_rotation;
+	
+	return $block;
+	
+  
+}
+
+
+
+function rotation_main_get_tax_term_options($machine_name) {
+    $options = array( '0' => '');
+
+    $vid = taxonomy_vocabulary_machine_name_load($machine_name)->vid;
+
+    $options_source = taxonomy_get_tree($vid);
+
+    foreach ($options_source as $item) {
+        $key = $item->tid;
+        $value = $item->name;
+        $options[$key] = $value;
+    }
+
+    return $options;
+}
+
+
+
+//Pass an array of varables you want to add to rotation html page and write html
+function rotation_main_buildHTMLroation($rt_gettaxid, $delta = NULL) {
+
+  if ($rt_gettaxid != 0) {
+   $my_output = &drupal_static(__FUNCTION__);
+   if (!isset($my_output)) {
+    if ($cache = cache_get('rotation_main_buildHTMLroation_data_' . $delta)) {
+      $my_output = $cache->data;
+   }
+   else {
+  
+  
+	 
+	  
+	  $htmlpanels = '';
+	  $htmlfilmstrip = '';
+	  $output = '';
+	  $i = 1;
+	  
+	  
+	  $has_caption = variable_get('rotation_main_show_captions', '0');
+	  
+	  $rt_filmstrip_style = variable_get('rotation_main_filmstrip_style', 'thumbnails');
+	  
+		$tax_tid = $rt_gettaxid;
+		
+		
+		
+		//Join that brings all tables together if all fields are filled out.  With if statments for non required fields.
+		if ($has_caption == 0){
+	      //Query: Caption(FALSE)
+		  $query = db_select('node', 'n');
+		  $query->join('field_data_rotation_main_weight', 'b', 'n.nid = b.entity_id');
+		  $query->join("field_data_rotation_main_category", "t", "n.nid = t.entity_id AND b.entity_id = t.entity_id");
+
+		  $query->join("field_revision_rotation_main_new_window", "w", "n.nid = w.entity_id AND b.entity_id = w.entity_id AND t.entity_id = w.entity_id");
+		
+		  $query->join("field_data_body", "bb", "n.nid = bb.entity_id AND b.entity_id = bb.entity_id AND t.entity_id = bb.entity_id AND w.entity_id = bb.entity_id");
+		  $query->join("field_data_rotation_main_url", "u", "n.nid = u.entity_id AND b.entity_id = u.entity_id AND t.entity_id = u.entity_id AND w.entity_id = u.entity_id AND bb.entity_id = u.entity_id");
+		
+	      $query->join("field_data_rotation_main_thumb_image", "s", "n.nid = s.entity_id AND b.entity_id = s.entity_id AND t.entity_id = s.entity_id AND w.entity_id = s.entity_id AND u.entity_id = s.entity_id AND s.entity_id = bb.entity_id");
+		
+		  $query->join("field_data_rotation_main_large_image", "l", "n.nid = l.entity_id AND b.entity_id = l.entity_id AND t.entity_id = l.entity_id AND w.entity_id = l.entity_id AND l.entity_id = bb.entity_id");
+		  $query->join("file_managed", "f", "f.fid = l.rotation_main_large_image_fid");
+
+		
+		  $query
+		  ->fields('n', array('nid', 'title', 'language', 'status'))
+		  ->fields('b', array('rotation_main_weight_value'))
+		  ->fields('t', array('rotation_main_category_tid'))
+		  ->fields('w', array('rotation_main_new_window_value'))
+		  ->fields('l', array('rotation_main_large_image_fid', 'rotation_main_large_image_alt', 'rotation_main_large_image_title'))
+		  ->fields('bb', array('body_value'))
+		  ->fields('u', array('rotation_main_url_value'))
+		  ->fields('f', array('fid', 'filename', 'uri', 'filemime'))
+		  ->condition('n.type', 'rotation_main')
+		  ->condition('n.status', '1')
+		  ->condition('t.rotation_main_category_tid', $tax_tid)
+		  ->orderBy('b.rotation_main_weight_value', 'ASC')
+		  ->addTag('node_access');
+		}
+		
+		
+		
+		else{
+		  //Query: Caption(TRUE)
+		  $query = db_select('node', 'n');
+		  $query->join('field_data_rotation_main_weight', 'b', 'n.nid = b.entity_id');
+		  $query->join("field_data_rotation_main_category", "t", "n.nid = t.entity_id AND b.entity_id = t.entity_id");
+		  $query->join("field_data_rotation_main_caption", "c", "n.nid = c.entity_id AND b.entity_id = c.entity_id AND t.entity_id = c.entity_id");
+		  $query->join("field_revision_rotation_main_new_window", "w", "n.nid = w.entity_id AND b.entity_id = w.entity_id AND t.entity_id = w.entity_id AND c.entity_id = w.entity_id");
+		
+		  $query->join("field_data_body", "bb", "n.nid = bb.entity_id AND b.entity_id = bb.entity_id AND t.entity_id = bb.entity_id AND c.entity_id = bb.entity_id AND w.entity_id = bb.entity_id");
+		  $query->join("field_data_rotation_main_url", "u", "n.nid = u.entity_id AND b.entity_id = u.entity_id AND t.entity_id = u.entity_id AND c.entity_id = u.entity_id AND w.entity_id = u.entity_id AND bb.entity_id = u.entity_id");
+		
+	      $query->join("field_data_rotation_main_thumb_image", "s", "n.nid = s.entity_id AND b.entity_id = s.entity_id AND t.entity_id = s.entity_id AND c.entity_id = s.entity_id AND w.entity_id = s.entity_id AND u.entity_id = s.entity_id AND s.entity_id = bb.entity_id");
+		
+		  $query->join("field_data_rotation_main_large_image", "l", "n.nid = l.entity_id AND b.entity_id = l.entity_id AND t.entity_id = l.entity_id AND c.entity_id = l.entity_id AND w.entity_id = l.entity_id AND l.entity_id = bb.entity_id");
+		  $query->join("file_managed", "f", "f.fid = l.rotation_main_large_image_fid");
+
+		
+		  $query
+		  ->fields('n', array('nid', 'title', 'language', 'status'))
+		  ->fields('b', array('rotation_main_weight_value'))
+		  ->fields('t', array('rotation_main_category_tid'))
+		  ->fields('c', array('rotation_main_caption_value'))
+		  ->fields('w', array('rotation_main_new_window_value'))
+		  ->fields('l', array('rotation_main_large_image_fid', 'rotation_main_large_image_alt', 'rotation_main_large_image_title'))
+		  ->fields('bb', array('body_value'))
+		  ->fields('u', array('rotation_main_url_value'))
+		  ->fields('f', array('fid', 'filename', 'uri', 'filemime'))
+		  ->condition('n.type', 'rotation_main')
+		  ->condition('n.status', '1')
+		  ->condition('t.rotation_main_category_tid', $tax_tid)
+		  ->orderBy('b.rotation_main_weight_value', 'ASC')
+		  ->addTag('node_access');
+		
+		}
+		
+		$result = $query->execute();
+		
+		//Displays Query on Page
+		//print (string)$query;
+		
+		foreach ($result as $record) {
+
+	  
+	      $newwindow = '';
+
+		  //Build Containter with images and overlay
+		  //Get all Variables
+		  //concatinate each loop
+		  
+		  $rt_image_alt = $record->rotation_main_large_image_alt;
+		  $rt_image_title = $record->rotation_main_large_image_title;
+		  $rt_title = $record->title;
+		  $rt_nid = $record->nid;
+		  
+		  if (($rt_image_alt == NULL) || (!isset($rt_image_alt)) || ($rt_image_alt == "") || (empty($rt_image_alt))) {
+		    $rt_image_alt = $rt_title;
+		  }
+		  
+		  if (($rt_image_title == NULL) || (!isset($rt_image_title)) || ($rt_image_title == "") || (empty($rt_image_title))) {
+		    $rt_image_title = $rt_title;
+		  }
+		  
+		  $rt_body = $record->body_value;
+		  $rt_url = $record->rotation_main_url_value;
+		  $rt_image_uri = $record->uri;
+		  $rt_image = file_create_url($rt_image_uri);
+		  $rt_newwindow = $record->rotation_main_new_window_value;
+
+		
+			if ($rt_newwindow == 'yes') {
+			  $newwindow = ' target="_blank"';
+			}
+			
+			
+			
+			$htmlpanels .= '<div class="panel">';
+			  
+			  
+			  //image tag
+			  $htmlpanels .= '<a href="' . $rt_url . '"' . $newwindow . '><img src="' . $rt_image . '" title="' . $rt_image_title . '" alt="' . $rt_image_alt . '" /></a>';
+				  
+			  //Overlay Tag
+			  $htmlpanels .= '<div class="panel-overlay">';
+			  
+				//Title
+				$htmlpanels .= '<h2><a href="' . $rt_url . '"' . $newwindow . '>' . $rt_title . '</a></h2>';
+				
+				//Body
+				$htmlpanels .= $rt_body;
+				  
+			  $htmlpanels .= '</div>';
+			  
+			$htmlpanels .= '</div>';
+			
+			
+			
+			
+			//check if filmstrip exists
+			if ($rt_filmstrip_style != 'none'){
+			
+			$resultThumb = db_query("SELECT ss.entity_id, ss.rotation_main_thumb_image_fid, ff.fid, ff.filename, ff.uri, ff.filemime FROM {field_data_rotation_main_thumb_image} AS ss INNER JOIN {file_managed} AS ff ON ss.rotation_main_thumb_image_fid=ff.fid WHERE ss.entity_id = :nid", array(':nid' => $rt_nid));
+
+			$arraysToBuild1 = array();
+
+			foreach ($resultThumb as $row) {
+			 
+				$rt_thumb_uri = $row->uri;
+
+			}
+
+			$rt_thumb = file_create_url($rt_thumb_uri);
+			
+			
+				
+				if ($rt_filmstrip_style == 'thumbnails') {
+					
+
+					$htmlfilmstrip .= '<li><div class="imageWrapper"><img src="' . $rt_thumb . '" alt="' . $rt_title . '" title="' . $rt_title . '" /></div>';
+					
+					
+					$has_caption = variable_get('rotation_main_show_captions', '0');
+					
+					//Check if captions are true
+					if ($has_caption == 1) {
+					
+						$rt_caption = $record->rotation_main_caption_value;
+					
+						$htmlfilmstrip .= '<div class="caption">' . $rt_caption . '</div>';
+					}
+					
+					  $htmlfilmstrip .= '</li>';
+					}
+					else {
+
+						$htmlfilmstrip .= '<li class="rotationList"><div class="numberWrapper">' . $i . '</div><div class="popupWrapper"><div class="imageWrapper"><img src="' . $rt_thumb . '" alt="' . $rt_title . '" title="' . $rt_title . '" /></div>';
+						
+						
+						
+						
+						//Check if captions are true
+						if ($has_caption == 1) {
+							
+							$rt_caption = $record->rotation_main_caption_value;
+						
+							$htmlfilmstrip .= '<div class="caption">' . $rt_caption . '</div>';
+						}
+						
+						  $htmlfilmstrip .= '<div class="rotation-arrow"></div></div></li>';
+					
+					}
+			
+			 
+			 
+			 
+				$i++;
+			 }
+			 
+		
+		}
+
+		  $noFilmStrip = variable_get('rotation_main_filmstrip_position', 'bottom');
+	  
+	  //Check if filmstrip is true  
+	  if ($noFilmStrip != 'none') {
+		  $output .= '<div id="rotation" class="galleryview">';
+			  $output .= $htmlpanels;
+			  $output .= '<ul class="filmstrip">';
+				$output .= $htmlfilmstrip;
+			  $output .= '</ul>';
+		  $output .= '</div>';
+	  }
+	  else{
+		  $output .= '<div id="rotation" class="galleryview">';
+			  $output .= $htmlpanels;
+		  $output .= '</div>';
+	  }
+	  
+	  //return output and pass to cache
+	  $my_output = $output;
+	 
+	 //var_dump($htmlfilmstrip);
+	 
+	cache_set('rotation_main_buildHTMLroation_data_' . $delta, $my_output, 'cache');
+    }
+  }
+  return $my_output;
+  }
+  else{
+		return;
+  }
+      
+}
+
+
+/**
+ * Gets the defualt roation ID by taxonomy machine name 'rotation_tax'
+ */
+function rotation_main_get_default_tax_id() {
+    
+    $rt_vocabulary = rotation_main_get_tax_term_options('rotation_tax');
+    
+    //sort alphabetically
+    ksort($rt_vocabulary);
+    
+    //removes the first array because it is empty "" from function call
+    array_shift($rt_vocabulary);
+    
+    $defult_tax_name_id = $rt_vocabulary[0];
+    
+    return $defult_tax_name_id;
+}
+
+
+
+function rotation_main_get_nids_from_tax_for_block($delta = NULL, $tax_name = NULL) {
+
+    if ((empty($tax_name)) || ($tax_name == NULL)) {
+        
+        $defult_tax_name_id = rotation_main_get_default_tax_id();
+        
+        //pass in which taxonomy name they want to use for a block
+        $rt_taxonomyID = variable_get('rotation_main_taxname_' . $delta, $defult_tax_name_id);
+    }
+    else{
+        $rt_taxonomyID = $tax_name;
+    }
+
+
+    /*$result = db_query("SELECT nid FROM {taxonomy_index} WHERE tid = :tid", array(':tid' => $rt_taxonomyID));
+
+    $arraysToBuild1 = array();
+
+    foreach ($result as $row) {
+     
+        $arraysToBuild1[] = $row;
+
+    }
+
+
+    //set temp variables
+    $temp_array_length = count($arraysToBuild1);
+    $temp_counter = 0;
+    $arraysToBuild2 = array();
+
+    //main loop
+    for ($temp_counter = 0; $temp_counter < $temp_array_length; $temp_counter++) {
+        $arraysToBuild2[] = $arraysToBuild1[$temp_counter]->nid;
+    }
+    
+    return $arraysToBuild2;*/
+    
+    return $rt_taxonomyID;
+
+}
+
+
+
+/**
+ * Implements hook_theme().
+ *
+ * We need run our forms through custom theme functions in order to build the
+ * table structure which is required by tabledrag.js.  Before we can use our
+ * custom theme functions, we need to implement hook_theme in order to register
+ * them with Drupal.
+ *
+ * We are defining our theme hooks with the same name as the form generation
+ * function so that Drupal automatically calls our theming function when the
+ * form is displayed.
+ */
+function rotation_main_theme($variables) {
+  return array(
+    // Theme function for the 'sortable' block form
+    'rotation_main_block_form' => array(
+      'render element' => 'form',
+      'file' => 'rotation_main_block_form.inc',
+    ),
+  );
+}

@@ -1,0 +1,227 @@
+<?php
+// $Id$
+
+/**
+ * @file
+ * Admin page callback for the rotation module.
+ */
+
+/**
+ * Builds and returns the trails settings form.
+ */
+function rotation_main_help() {
+  
+  //START OF FORM
+
+  $form['rotation_description'] = array(
+    '#type' => 'markup',
+    '#markup' => t('<ul>
+  <li>
+    <h2><strong><a href="#intro">Introduction</a></strong></h2>
+  </li>
+  <li>
+    <h2><strong><a href="#start">Getting Started with your first Rotation</a></strong></h2>
+  </li>
+  <li>
+    <h2><strong><a href="#adding">Adding an Additional Rotation Steps</a></strong></h2>
+  </li>
+  <li>
+    <h2><strong><a href="#config">Configuring the Rotation Tips and Tricks</a></strong></h2>
+  </li>
+  <li>
+    <h2><strong><a href="#stylesandsettings">Different Style Rotation and Settings</a></strong></h2>
+  </li>
+  <li>
+    <h2><strong><a href="#node">Can I have a single Rotation Item (Node) show up in more than one place</a></strong></h2>
+  </li>
+  <li>
+    <h2><strong><a href="#known">Known Issues</a></strong></h2>
+  </li>
+  </ul>
+<p>&nbsp;</p>
+<h2><strong><a name="intro" id="intro"></a>Introduction:</strong></h2>
+<p>Need a easy to use and customise Rotation/Slide Show/A spot.  This rotation module is just what you are looking for.</p>
+	<p>The administration menu <a href="#start" target="_blank">setting page</a> allows you to modify yoru Rotation/Slide Show with its easy to edit form that controls the gloabl settings across your website of the Rotation/Slide Shows so you have consisitancy.  You can completely customize the entire slide show and make it your own.  You can view the different types of slides shows you can easily create here and <a href="config" target="_blank">view all settings replicate your slide show to the example</a>.</p>
+    <p>Check out the module creators website <a href="http://www.JoeMRoberts.com/Rotation" target="_blank">www.JoeMRoberts.com/Rotation</a> for more information about the Rotation/Slide Show/A spot.    </p>
+<p><strong>Please Note:</strong> You can only use one Rotation Block on a page at a time.</p>
+
+
+
+<p>&nbsp;</p>
+<h2><strong><a name="start" id="start"></a>Getting Started with your first Rotation:</strong></h2>
+<ul>
+  <li> Instal Weight Module</li>
+  <li>Instal Module</li>
+  <li>Go to the <strong><a href="/admin/config/content/rotation" target="_blank">Rotation Module Configuration page</a> (Configuration &gt; Content Authoring &gt; <a href="/admin/config/content/rotation" target="_blank">Rotation Module</a>)</strong>
+    <ul>
+      <li>Configure it they way you want it to show up across all Rotations.</li>
+      <li>Be sure to read all the notes under each input to help you figure out how to best use the rotation.</li>
+      <li>Hit Save</li>
+    </ul>
+  </li>
+  <li> Edit Rotation Item Nodes to be what content you want</li>
+  <li>Go to the <strong><a href="/admin/structure/block" target="_blank">Blocks Configuration Page</a> (Block Structure &gt; <a href="/admin/structure/block" target="_blank">Blocks</a>)</strong> and drag the block &quot;Rotation Location # (Rotation Main)&quot; (in this case since is our first one it is Rotation Location 1 (Rotation Main)) to the Content Area above the &quot;Main Page Content&quot; so the rotation appears on top of the content.</li>
+  <li>Hit Save Blocks</li>
+  <li>Configure the block &quot;Rotation Location # (Rotation Main)&quot; in this case since is our first one it is Rotation Location 1 (Rotation Main)
+    <ul>
+      <li>Select the Location you want from the drop down. Since this is the first Rotation we will use the default location &quot;Home Page&quot; you can use this for any page it does not have to be the Home Page it is just a place holder name and you can even change the name in the taxonomy section of the website.
+        <ul>
+          <li>Do not see what you are looking for or want to change the defualt &quot;Home Page&quot; to a defferent name. Add a new or edit the vocabulary term <strong><a href="/admin/structure/taxonomy/rotation_tax" target="_blank">Rotation Location</a></strong> by going to <strong>Structure &gt;  Taxonomy &gt; <a href="/admin/structure/taxonomy/rotation_tax" target="_blank">Rotation Locations</a></strong></li>
+        </ul>
+      </li>
+      <li>Change the &quot;Visibility Settings&quot; and make sure that &quot;Pages&quot; is set to &quot;Only The Listed Pages&quot; and then put in the page you want this to show up on. Example use <strong>&lt;front&gt;</strong> will only display this block on the front page. If you do not do this it will automatically show up on every page.  In this example we will use <strong>&lt;front&gt;</strong> for the home page.</li>
+      <li>Hit Save</li>
+      <li>Select the block &quot;Rotation Location 1 (Rotation Main)&quot; again and configure it</li>
+      <li>Now re-order the Rotations to the order that you want by sliding them up and down. The weights will automatically update for you.</li>
+      <li>Hit Save</li>
+    </ul>
+  </li>
+  <li>Your roations should be displaying on the page you specified in the &quot;Visibility Settings&quot; inside the block. In this case it was <strong>&lt;front&gt;</strong>.</li>
+  <li><strong>Please Note:</strong> You can only use one Rotation Block on a page at a time.</li>
+</ul>
+<p>&nbsp;</p>
+<h2> <strong><a name="adding" id="adding"></a>Adding an Additional Rotation Steps:</strong></h2>
+<ul>
+  <li>  -Go to the <a href="/admin/config/content/rotation" target="_blank"><strong>Rotation Module Configuration page</strong></a><strong> (Configuration &gt; Content Authoring &gt; Rotation Module)</strong>
+    <ul>
+      <li> Update the &quot;Total Number of Rotations&quot; to the desired number of rotations in the case we want to add one more so we will change the number to &quot;2&quot;</li>
+      <li>Hit Save</li>
+    </ul>
+  </li>
+  <li>Add a new vocabulary term to <strong><a href="/admin/structure/taxonomy/rotation_tax" target="_blank">Rotation Locations</a></strong> by going to <strong>Structure &gt;  Taxonomy &gt; <a href="/admin/structure/taxonomy/rotation_tax" target="_blank">Rotation Locations</a></strong>
+    <ul>
+      <li>Add Term</li>
+      <li>Name it what you want (Usually a good practice to name it the same as the title) we will call it &quot;Training&quot;</li>
+      <li>Description is optional</li>
+      <li>Hit save</li>
+    </ul>
+  </li>
+  <li>Add new content that is of the content type of <strong><a href="/node/add/rotation-main" target="_blank">Rotation Item</a></strong>
+    <ul>
+      <li>Add in the required fields and hit save.</li>
+      <li>Under Location Select the newly created Taxonomy Term &quot;Training&quot;</li>
+      <li>Continue adding until all nodes you want for the new rotation have been created</li>
+      <li>Hit Save</li>
+    </ul>
+  </li>
+  <li>Go to the <strong><a href="/admin/structure/block" target="_blank">Blocks Page</a></strong> by going to <strong>Structure &gt; <a href="/admin/structure/block" target="_blank">Blocks</a></strong> and drag the block &quot;Rotation Location # (Rotation Main)&quot; (in this case it would be Rotation Location 2 (Rotation Main))  to the Content Area above the &quot;Main Page Content&quot; so the rotation appears on top of the content.</li>
+  <li>Hit Save Blocks</li>
+  <li>Configure the block &quot;Rotation Location # (Rotation Main)&quot; in this case it would be Rotation Location 2 (Rotation Main)
+    <ul>
+      <li>Select the Location you want from the drop down. We will be selecting &quot;Training&quot; since we just created that taxonomy term.
+        <ul>
+          <li>Do not see what you are looking for or want to change the default &quot;Home Page&quot; to a different name. Add a new or edit the vocabulary term <strong><a href="/admin/structure/taxonomy/rotation_tax" target="_blank">Rotation Location</a></strong> by going to <strong>Structure &gt;  Taxonomy &gt; <a href="/admin/structure/taxonomy/rotation_tax" target="_blank">Rotation Locations</a></strong></li>
+        </ul>
+      </li>
+      <li>Change the &quot;Visibility settings&quot; and make sure that &quot;Pages&quot; is set to &quot;Only The Listed Pages&quot; and then put in the page you want this to show up on. In this case we want it to only display on the Training page which is &quot;training&quot;.</li>
+      <li>Hit Save</li>
+      <li>Select the block &quot;Rotation Location 2 (Rotation Main)&quot; again and configure it</li>
+      <li>Now re-order the Rotations to the order that you want.  The weights will automatically update for you.</li>
+      <li>Hit Save</li>
+    </ul>
+  </li>
+  <li>Your rotations should be displaying on the page you specified in the &quot;Visibility Settings&quot; inside the block. In this case it was &quot;/training&quot;.</li>
+  <li><strong>Please Note:</strong> You can only use one Rotation Block on a page at a time.<br>
+  </li>
+</ul>
+<p>&nbsp;</p>
+<h2><strong><a name="config" id="config"></a></strong>Configuring the Rotation Tips and Tricks:</h2>
+<ul>
+  <li> Total Number of Rotations: Enter the Number of Rotation you would like to display on this website. This will create a block for each of the sites so you can place it on the pages that you want to.</li>
+  <li>Entire Rotation Information
+    <ul>
+      <li>Large Image Width: Choose a Width for your Large Image. Please Note: Make sure the images you are posting are set to this width. If they are larger they will be cropped.</li>
+      <li>Large Image Height: Choose a Height for your Large Image. Please Note: Make sure the images your are posting are set to this height. If they are larger they will be cropped.</li>
+      <li>Rotation Transition Time: In milliseconds 1,000 = 1 second.</li>
+      <li>Entire Background Color: Drag the color chart below to pick a color. The outside ring selects the color and the inside square changes the lightness or darkness of that color.  It is a good idea to match your background color.</li>
+      <li>Entire Rotation Rounded Corners: Rounds all the corners to help it not look so boxy-looking.</li>
+    </ul>
+  </li>
+  <li>Overlay Information
+    <ul>
+      <li>Selected Overlay Positions: Choose a position for the overlay area to display.  You can choose from Bottom, Top, Left or Right.</li>
+      <li>Overlay Width: Please Note: Remember if you choose top or bottom this field will be ignored. Choose a Width for the overlay area of 200px wide use &quot;200&quot;.  Leave off the &quot;px&quot;.</li>
+      <li>Overlay Height: Please Note: Remember if you choose right or left this field will be ignored. Choose a Height for the overlay area of 100px tall use &quot;100&quot;.  Leave off the &quot;px&quot;.</li>
+      <li>Overlay Text Color: Please Note: The font-family and font-size will be inherited from your style sheet. Feel free to edit the class by changing (Rotation Links = .rotationLinks class) and/or (Rotation Header = .rotationHeader class).</li>
+      <li>Overlay Background Color: Drag the color chart below to pick a color. The outside ring selects the color and the inside square changes the lightness or darkness of that color.</li>
+      <li>Overlay Background Opacity: Choose a value between 0 (Completely Transparent) and 1 (Solid Color). Example: 0.80 is 80% transparent. If you do not want an overlay at all just set this value to 0.</li>
+    </ul>
+  </li>
+  <li>Filmstrip Information
+    <ul>
+      <li>Filmstrip Position: You can change where the filmstrip shows up.  Select bottom, top or No Film Strip. No Film Strip will remove the filmstrip completely.</li>
+      <li>Filmstrip Style: There are two styles you can setup for your filmstrip. Thumbnails = More traditional style with a thumbnail in the filmstrip. Numbers with Pop-up Thumbnails = Adds smaller numbers into the filmstrip area and allows you to use the thumbnails as popups to preview what is available for that number. It also allows you to use the captions as text to display what is available underneith the thumbnail.</li>
+      <li>Edit Thumbnail Information
+        <ul>
+          <li>Thumbnail Width: Choose a Width for your thumbnail images. If Filmstrip Style is set to &quot;Numbers with Pop-up Thumbnails&quot; then this value also determines the width of the pop-up. Please Note: Make sure the images you are posting are set to this width. If they are larger they will be cropped.</li>
+          <li>Thumbnail Height: Choose a Height for your thumbnail images. If Filmstrip Style is set to &quot;Numbers with Pop-up Thumbnails&quot; then this value is ignored. Please Note: Make sure the images you are posting are set to this height. If they are larger they will be cropped.</li>
+          <li>Numbers with Pop-up Thumbnails Background Color Only: If Filmstrip Style is set to &quot;Thumbnails&quot; then this value is ignored. This controls the color of the background of the numbers and the pop-up. Drag the color chart below to pick a color. The outside ring selects the color and the inside square changes the lightness or darkness of that color.</li>
+        </ul>
+      </li>
+      <li>Edit Caption Information
+        <ul>
+          <li>Show Captions: Selecting &quot;yes&quot; will allow you to see captions under each thumbnail in the filmstrip.</li>
+          <li>Captions Height: This is the height of the caption area. 20 = 20px in height. If you have a longer caption you might want to make this a larger number. You can adjust the line-height be changing the &quot;.caption&quot; class.</li>
+          <li>Caption Text Color: Drag the color chart below to pick a color. The outside ring selects the color and the inside square changes the lightness or darkness of that color.</li>
+        </ul>
+      </li>
+      <li>Filmstip Selected Image Border Color: Drag the color chart below to pick a color. The outside ring selects the color and the inside square changes the lightness or darkness of that color.  
+      </li>
+    </ul>
+  </li>
+  <ul>
+    <li>Filmstip Arrows and Pointer Color: Drag the color chart below to pick a color. The outside ring selects the color and the inside square changes the lightness or darkness of that color.</li>
+  </ul>
+</ul>
+<p>&nbsp;</p>
+<h2><strong><a name="stylesandsettings" id="stylesandsettings"></a></strong>Different Style Rotation and Settings:</h2>
+<ul>
+  <li> <strong>Without Thumbnails: </strong>This setting has no thumbnails and it has arrows that overly the main large image which allow you to advance your rotation.
+<ul>
+      <li><strong>Settings: </strong>
+<ul>
+          <li>Set the &quot;Filmstip Position&quot; to &quot;No Film Strip.&quot;</li>
+          <li>Optional: Without Overlay Background Color set &quot;Overlay Background Opacity&quot; to 0.</li>
+          <li>Optional: Add Rounded corners for a different look select &quot;yes&quot; for &quot;Entire Rotation Rounded Corners&quot;</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Standard with Thumbnails:</strong> Basic Large Image with Thumbnails below it.</li>
+  <ul>
+    <li><strong>Settings: </strong>
+<ul>
+        <li>Set the &quot;Filmstip Position&quot; to &quot;top&quot; or &quot;bottom&quot; depending on where you want the thumbnails to show up</li>
+        <li>Set the &quot;Filmstip Style&quot; to &quot;Thumbnails&quot;</li>
+        <li>Optional: Without Overlay Background Color set &quot;Overlay Background Opacity&quot; to 0.</li>
+        <li>Optional: Add Rounded corners for a different look select &quot;yes&quot; for &quot;Entire Rotation Rounded Corners&quot;</li>
+      </ul>
+    </li>
+  </ul>
+  <li><strong>Numbers with Pop-up Thumbnails:</strong> Large image with smaller numbers and a pop-up preview of the thumbnail and captions if used.
+<ul>
+      <li><strong> Settings: </strong>
+<ul>
+          <li>Set the &quot;Filmstip Position&quot; to &quot;top&quot; or &quot;bottom&quot; depending where you want the numbers and pop-up thumnails to show up.</li>
+          <li>Set the &quot;Filmstip Style&quot; to &quot;Thumbnails&quot;</li>
+          <li>Optional: Without Overlay Background Color set &quot;Overlay Background Opacity&quot; to 0.</li>
+          <li>Optional: Add Rounded corners for a different look select &quot;yes&quot; for &quot;Entire Rotation Rounded Corners&quot;</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<p>&nbsp;</p>
+<h2><strong><a name="node" id="node"></a></strong>Can I have a single Rotation Item show up in more than one place:</h2>
+<p>  Yes, it is easy.  All you have to do is open the node that you want to share across multiple Locations and scroll down to the Locations section and check any additional locations you want it to show up in.  There is a known issue that the is only one weight.  So you might have to work the wieghts between the mulitple to get it to show up where you want in each rotation.  But aside from that it is simple.</p>
+<p>&nbsp;</p>
+<h2><a name="known"></a>Known Issues:</h2>
+<ul>
+  <li>  Numbers with Pop-up Thumbnails can not have to many listing in it or it breaks and hides the arrows.</li>
+  <li>One Rotation Item (Node) in multiple roations blocks on a site needs to be played with because there is only one weight field per item.  So to get them to show up in the correct place in both rotations you need to play with the weight number. </li>
+  <li><strong>Please Note:</strong> You can only use one Rotation Block on a page at a time. If you add mulitple to one page it will break. You can have mulitple rotations on your website just not on the same page.</li>
+  <li>Multiple JS scripts with the same name does cause bugs.  You might need to remove them from your theme layer so they do not conflict with this module.</li>
+</ul>'),
+    );
+}
+
